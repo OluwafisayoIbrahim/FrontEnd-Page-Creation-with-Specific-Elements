@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Web Page</title>
+    <style>
+        .container{
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .data-element{
+            margin-bottom: 10px;
+        }
+        body{
+            font-family: Arial, 'Helvetica', sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        header{
+            background-color: cyan;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+        .data-element label {
+            display: inline-block;
+            width: 180px; 
+            font-weight: bold;
+        }
+        .data-element span {
+            display: inline-block;
+            margin-left: 10px;
+        
+        }
+        .data-element img {
+            max-width: 100%;
+            height: auto;
+        }
+        footer {
+            background-color: cyan;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+        header h1 {
+            font-size: 24px;
+            margin: 0;
+        }
+        #currentDay {
+            font-weight: bold;
+            color: black;
+        }
+        #currentUTC {
+            font-weight: bold;
+            color: black;
+        }
+        footer .data-element {
+            margin-top: 20px;
+        }
+        
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Personal Web Page</h1>
+    </header>
+    <div class="container">
+        <div class="data-element" data-testid="slackUserName">
+            <label for="Slack-name">Slack UserName:</label>
+            <span>Fisayo</span>
+        </div>
+        <div class="data-element" data-testid="slackDisplayImage">
+            <label for="SlackDisplayPicture">Slack Display Picture:</label>
+            <img src="https://ca.slack-edge.com/T05FFAA91JP-U05RW1ZB989-88cb521e07b3-512" alt="Slack Display Picture">
+        </div>
+        <div class="data-element" data-testid="CurrentDayoftheWeek">
+            <label for="day">Current Day of the Week:</label>
+            <span id="currentDay">Saturday</span>
+        </div>
+        <div class="data-element" data-testid="currentUTCTime">
+            <label for="Time">Current UTC Time:</label>
+            <span id="currentUTC"></span>
+        </div>
+        <div class="data-element" data-testid="myTrack">
+            <label for="Track">Track:</label>
+            <span>Front End Track</span>
+        </div>
+        <div class="data-element" data-testid="githubURL">
+            <label for="Github Profile">Github Profile:</label>
+            <a href="https://github.com/Oluwafisayoibrahim">GitHub Profile</a>
+        </div>
+    </div>
+
+    <script>
+        function updateTime() {
+            const currentDate = new Date();
+            const hours = String(currentDate.getUTCHours()).padStart(2, '0');
+            const minutes = String(currentDate.getUTCMinutes()).padStart(2, '0');
+            const seconds = String(currentDate.getUTCSeconds()).padStart(2, '0');
+            const milliseconds = String(currentDate.getUTCMilliseconds()).padStart(3, '0');
+            const formattedTime = `${hours}:${minutes}:${seconds}:${milliseconds}`;
+            
+            
+            const currentUTCElement = document.getElementById("currentUTC");
+            
+            if (currentUTCElement) {
+                currentUTCElement.textContent = formattedTime; 
+            }
+            
+            
+            setTimeout(updateTime, 100);
+        }
+
+        
+        window.onload = updateTime;
+    </script>
+</body>
+</html>
